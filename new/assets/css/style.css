@@ -597,6 +597,7 @@ section {
   height: 200px;
   position: relative;
   background: #faf9f8;
+  cursor: pointer;
 }
 .services .icon {
   position: absolute;

@@ -200,6 +200,13 @@
       }, true);
     }
 
+    // Add a click handler to the icon-box elements on the homepage to nav to the same place as their child links
+    Array.from(document.querySelectorAll('.icon-box')).map(function(iconBox) {
+      iconBox.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.location = iconBox.getElementsByTagName('a')[0].getAttribute('href');
+      });
+    });
   });
 
   /**
