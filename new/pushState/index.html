@@ -1,0 +1,86 @@
+<html>
+
+<body>
+    <div class="gallery">
+        <a id="lnkEgon" href="/egon.html" class="egon" data-name="egon">Egon</a>
+        <a id="lnkWinston" href="/winston.html" class="winston" data-name="winston">Winston</a>
+    </div>
+  
+  <p class="selected">Ghostbusters</p>
+  <p class="highlight"></p>
+
+  <div>
+    Inspired from https://css-tricks.com/using-the-html5-history-api/, this is a test of vanilla javascript routing with pushState without any server-side backing.
+    Can testindex.html serve as the main SPA page with supporting content pages allowing browser refreshes?
+    <br />With pushState, we can push fake URLs into history.  However doing so creates a problem whereby page refreshes of those fake URLs result in 404s.
+    I'm trying to work around the 404s by actually creating content at the locations e.g. new/pushState/egon/index.html for new/pushState/egon.
+    We need to handle scenarios:
+    <ol>
+        <li>User visits main page first, and clicks to navigate to content pages</li>
+        <li>User visits content page first, or refreshes the browser</li>
+    </ol>
+    Scenario 1 is handled by pushState logic in the main page i.e. new/pushState/index.html.
+    <br />Scenario 2 is handled by some simple javascript-based redirect code plus some code that auto-triggers Scenario 1.
+  </div>
+  
+  <div id="content"></div>
+
+  <script>
+    window.onload = function() {
+        console.log(window.location.search);
+        document.querySelector('.gallery').addEventListener('click', function(e) {
+            if (e.target != e.currentTarget) {
+                e.preventDefault();
+                // e.target is the image inside the link we just clicked.
+                var data = e.target.getAttribute('data-name'),
+                url = data + "/"; //+ ".html";
+                history.pushState(data, null, data);
+
+                // here we can fix the current classes
+
+                // and update text with the data variable
+
+                // and make an Ajax request for the .content element
+                console.log(`loading url: ${url}`);
+                requestContent(url);
+
+                // finally we can manually update the document's title
+            }
+            e.stopPropagation();
+        }, false);
+
+        if (window.location.search.toLowerCase().indexOf('=winston') !== -1) {
+            document.getElementById('lnkWinston').click();
+        } else if (window.location.search.toLowerCase().indexOf('=egon') !== -1) {
+            document.getElementById('lnkEgon').click();
+        }
+    }
+
+    function requestContent(url) {
+        fetch(url)
+            .then(data => {
+                return data.text()
+            })
+            .then(data => {
+                document.getElementById('content').innerHTML = data;
+            })
+    }
+
+    window.addEventListener('popstate', function(e) {
+        // e.state is equal to the data-attribute of the last image we clicked
+        var character = e.state;
+        alert(character);
+        if (character == null) {
+            //removeCurrentClass();
+            document.getElementById('content').innerHTML = " ";
+            document.title = "Ghostbusters";
+        } else {
+            //updateText(character);
+            requestContent(character + ".html");
+            //addCurrentClass(character);
+            document.title = "Ghostbuster | " + character;
+        }
+    });
+  </script>
+</body>
+</html>
