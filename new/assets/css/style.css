@@ -8,6 +8,12 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+/*
+* Medium Blue: 517b9e (links)
+* Dark Blue: 1e4661 (background color for accents like footers, breadcrumbs)
+* Light Blue: 89b5c9 (hovers)
+* Medium Red: a30d11 (logo, accent font color)
+*/
 body {
   font-family: "Open Sans", sans-serif;
   color: #4d4643;
@@ -515,7 +521,7 @@ section {
 --------------------------------------------------------------*/
 .breadcrumbs {
   padding: 15px 0;
-  background: #2b2320;
+  background: #1e4661;
   min-height: 40px;
 }
 .breadcrumbs h2 {
@@ -532,7 +538,7 @@ section {
   color: #ded5d2;
 }
 .breadcrumbs ol a {
-  color: #fe825a;
+  color: #89b5c9;
 }
 .breadcrumbs ol li + li {
   padding-left: 10px;
@@ -869,7 +875,7 @@ section {
   margin-left: 60px;
 }
 .about-us .image {
-  background: url("../img/about.jpg") center center no-repeat;
+  background: url("../img/hire.jpg") center center no-repeat;
   background-size: cover;
   min-height: 400px;
 }
