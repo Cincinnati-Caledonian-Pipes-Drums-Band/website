@@ -60,15 +60,15 @@
     <div class="container d-flex justify-content-between">
 
       <div class="logo">
-        <h1 class="text-light"><a href="index.html">Cincinnati Caledonian Pipes &amp; Drums Band</a></h1>
+        <h1 class="text-light"><a href="/">Cincinnati Caledonian Pipes &amp; Drums Band</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="active" href="/">Home</a></li>
-          <li><a href="/hire">Hire</a></li>
+          <li><a class="active" href="/" data-suffix="Home">Home</a></li>
+          <li><a href="/hire" data-suffix="Hire">Hire</a></li>
           <!-- <li class="dropdown"><a href="#"><span>About</span> <i class="bi bi-chevron-down"></i></a>
             <ul> -->
               <!-- <li><a href="#">Mission</a></li> -->
@@ -78,9 +78,9 @@
               <!-- <li><a href="#">History</a></li> -->
             <!-- </ul>
           </li> -->
-          <li><a href="/lessons">Lessons</a></li>
-          <li><a href="/calendar">Calendar</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><a href="/lessons" data-suffix="Lessons">Lessons</a></li>
+          <li><a href="/calendar" data-suffix="Calendar">Calendar</a></li>
+          <li><a href="/contact" data-suffix="Contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -143,54 +143,6 @@
   </section><!-- End Hero -->
 
   <main id="main">
-
-    <!-- ======= Cta Section ======= -->
-    <section id="cta" class="cta">
-      <div class="container">
-
-        <div class="row">
-          <div class="col-lg-12 text-center text-lg-left">
-            <h3>Cincinnati's pipe band, since 1912!</h3>
-            <p>We are a non-profit 501(c)(3) organization with a mission to preserve and promote the Scottish Arts.  We perform throughout the year at a wide range of community and private events, teach free lessons in Scottish bagpiping and drumming, and sponsor educational opportunities in the Scottish Arts.</p>
-          </div>
-          <!--div class="col-lg-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" href="#">Request a quote</a>
-          </div-->
-        </div>
-
-      </div>
-    </section><!-- End Cta Section -->
-
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
-      <div class="container">
-
-        <div class="row">
-          <div class="col-lg-4 col-md-6">
-            <div class="icon-box" data-aos="fade-up">
-              <div class="icon"><i class="bi bi-calendar4-event"></i></div>
-              <h4 class="title"><a href="/hire">Hire Us</a></h4>
-              <p class="description">Hire the full band or a solo piper to make your special event unique and unforgettable.</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-              <div class="icon"><i class="bi bi-journal-bookmark"></i></div>
-              <h4 class="title"><a href="/lessons">Free Lessons</a></h4>
-              <p class="description">Learn how to play the Scottish bagpipes or drums in our free weekly lessons taught by our talented instructors.</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-              <div class="icon"><i class="bi bi-calendar-date"></i></div>
-              <h4 class="title"><a href="/calendar">Calendar</a></h4>
-              <p class="description">Weekly lessons/rehearsals and performances keep us busy throughout the year.  Stay informed of our upcoming events.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Services Section -->
 
   </main><!-- End #main -->
 
@@ -259,6 +211,84 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <script>
+    window.onload = function() {
+        console.log(window.location.search);
+
+        // On initial load of the homepage, load the home content
+        if (!window.location.search) {
+          goToYourHome();
+        }
+
+        document.querySelectorAll('a[href^="/"]').forEach(el =>
+          el.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            var nextPage = e.target.getAttribute('href');
+            if (nextPage.indexOf('/new') === -1) {
+              nextPage = '/new' + nextPage;
+            }
+            var titleSuffix = e.target.getAttribute('data-suffix');
+            history.pushState({url: nextPage, titleSuffix: titleSuffix }, null, nextPage);
+
+            // here we can fix the current classes
+
+            // Only show the slideshow on the homepage but it remains in the DOM throughout navigation
+            document.getElementById('hero').style.display = (nextPage === '/new/' || nextPage === '/new') ? '' : 'none';
+
+            // and update text with the data variable
+
+            // and make an Ajax request for the .content element
+            console.log(`loading page: ${nextPage}`);
+            requestContent(nextPage);
+
+            // update the document's title
+            document.title = 'Cincinnati Caledonian Pipes & Drums Band - ' + titleSuffix || '';
+
+            e.stopPropagation();
+          })
+        );
+
+        // Support for user refreshing the browser on sub-page or bookmarking a sub-page
+        if (window.location.search.toLowerCase().indexOf('=winston') !== -1) {
+            document.getElementById('lnkWinston').click();
+        } else if (window.location.search.toLowerCase().indexOf('=egon') !== -1) {
+            document.getElementById('lnkEgon').click();
+        }
+    }
+
+    function requestContent(url) {
+        if (url === '/new/' || url === '/new') {
+          url = '/new/home';
+        }
+        fetch(url)
+            .then(data => {
+                return data.text()
+            })
+            .then(data => {
+                document.getElementById('main').innerHTML = data;
+            })
+    }
+
+    function goToYourHome() {
+      document.getElementById('hero').style.display = '';
+      requestContent('/new/');
+      document.title = "Cincinnati Caledonian Pipes & Drums Band - Home";
+      // todo: set "active" class on the "Home" link
+      window.scrollTo(0, 0);
+    }
+
+    window.addEventListener('popstate', function(e) {
+      if (e.state === null) {
+          //removeCurrentClass();
+          goToYourHome();
+      } else {
+          requestContent(e.state.url);
+          //addCurrentClass(character);
+          document.title = "Cincinnati Caledonian Pipes & Drums Band - " + e.state.titleSuffix || '';
+      }
+    });
+  </script>
 </body>
 
 </html>
