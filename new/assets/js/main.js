@@ -199,7 +199,14 @@ window.ccpdRoute = (function() {
 
             // Add a click handler to the icon-box elements on the homepage to nav to the same place as their child links
             Array.from(document.querySelectorAll('.icon-box')).map(iconBox => {
-              iconBox.addEventListener('click', linkClickHandler)
+              iconBox.addEventListener('click', (e) => {
+                e.preventDefault()
+                let targetEl = e.target
+                while (!targetEl.getAttribute('data-target-link-id')) {
+                  targetEl = targetEl.parentElement
+                }
+                document.getElementById(targetEl.getAttribute('data-target-link-id')).click()
+              })
             });
         })
   }
@@ -208,7 +215,8 @@ window.ccpdRoute = (function() {
     document.getElementById('hero').style.display = ''
     requestContent('/new/')
     document.title = "Cincinnati Caledonian Pipes & Drums Band - Home"
-    //updateSelectedPageLinkCss()
+    updateSelectedPageLinkCss()
+    window.ccpdRoute = '/';
   }
 
   // Support browser refreshes on content pages and bookmarking of content pages
@@ -225,7 +233,7 @@ window.ccpdRoute = (function() {
   const updateSelectedPageLinkCss = () => {
     let activeLink = select('a[class="active"]')
     activeLink && activeLink.removeAttribute('class')
-    let newPathLink = select(`a[href="${window.location.pathname}"]`)
+    let newPathLink = select(`a[href="${window.location.pathname}"]`) || document.getElementById('lnkHome')
     newPathLink && newPathLink.setAttribute('class', 'active')
   }
 
