@@ -168,22 +168,21 @@ window.ccpdRoute = (function() {
     var titleSuffix = e.target.getAttribute('data-suffix')
     history.pushState({url: nextPage, titleSuffix: titleSuffix }, null, nextPage)
 
-    // here we can fix the current classes
-
     // Only show the slideshow on the homepage but it remains in the DOM throughout navigation
     document.getElementById('hero').style.display = (nextPage === '/new/' || nextPage === '/new') ? '' : 'none'
 
-    // and update text with the data variable
-
     // and make an Ajax request for the .content element
-    console.log(`loading page: ${nextPage}`)
     requestContent(nextPage)
 
-    // update the document's title
-    document.title = 'Cincinnati Caledonian Pipes & Drums Band - ' + titleSuffix || ''
+    // and update the document's title
+    document.title = `Cincinnati Caledonian Pipes & Drums Band - ${titleSuffix || ''}`
+
+    // and update CSS classes to match the currently-selected page
+    updateSelectedPageLinkCss()
 
     e.stopPropagation()
 
+    // and scroll to the page top
     window.scrollTo(0, 0)
   }
 
@@ -209,8 +208,7 @@ window.ccpdRoute = (function() {
     document.getElementById('hero').style.display = ''
     requestContent('/new/')
     document.title = "Cincinnati Caledonian Pipes & Drums Band - Home"
-    // todo: set "active" class on the "Home" link
-    //onscroll(document, toggleBacktotop)
+    //updateSelectedPageLinkCss()
   }
 
   // Support browser refreshes on content pages and bookmarking of content pages
@@ -222,6 +220,13 @@ window.ccpdRoute = (function() {
         document.getElementById(`lnk${targetPage[0][0].toUpperCase()}${targetPage[0].substring(1)}`).click()
       }
     }
+  }
+
+  const updateSelectedPageLinkCss = () => {
+    let activeLink = select('a[class="active"]')
+    activeLink && activeLink.removeAttribute('class')
+    let newPathLink = select(`a[href="${window.location.pathname}"]`)
+    newPathLink && newPathLink.setAttribute('class', 'active')
   }
 
   window.addEventListener('load', () => {
@@ -281,12 +286,9 @@ window.ccpdRoute = (function() {
    */
   window.addEventListener('popstate', e => {
     if (e.state === null) {
-        //removeCurrentClass()
         goToYourHome()
     } else {
-        requestContent(e.state.url)
-        //addCurrentClass(character);
-        document.title = "Cincinnati Caledonian Pipes & Drums Band - " + e.state.titleSuffix || ''
+        document.querySelector(`a[href="${e.state.url}"]`).click()
     }
   });
 
