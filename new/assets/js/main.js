@@ -4,7 +4,7 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
-(function() {
+window.ccpdRoute = (function() {
   "use strict";
 
   /**
@@ -154,59 +154,90 @@
       heroCarouselIndicators.innerHTML += "<li data-bs-target='#heroCarousel' data-bs-slide-to='" + index + "'></li>"
   });
 
-  /**
-   * Skills animation
-   */
-  let skilsContent = select('.skills-content');
-  if (skilsContent) {
-    new Waypoint({
-      element: skilsContent,
-      offset: '80%',
-      handler: function(direction) {
-        let progress = select('.progress .progress-bar', true);
-        progress.forEach((el) => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%'
-        });
-      }
-    })
+  const linkClickHandler = (e) => {
+    e.preventDefault()
+
+    var nextPage = e.target.getAttribute('href') || e.target.getAttribute('data-url')
+    if (window.ccpdRoute === nextPage) {
+      return
+    }
+    window.ccpdRoute = nextPage;
+    if (nextPage.indexOf('/new') === -1) {
+      nextPage = '/new' + nextPage
+    }
+    var titleSuffix = e.target.getAttribute('data-suffix')
+    history.pushState({url: nextPage, titleSuffix: titleSuffix }, null, nextPage)
+
+    // here we can fix the current classes
+
+    // Only show the slideshow on the homepage but it remains in the DOM throughout navigation
+    document.getElementById('hero').style.display = (nextPage === '/new/' || nextPage === '/new') ? '' : 'none'
+
+    // and update text with the data variable
+
+    // and make an Ajax request for the .content element
+    console.log(`loading page: ${nextPage}`)
+    requestContent(nextPage)
+
+    // update the document's title
+    document.title = 'Cincinnati Caledonian Pipes & Drums Band - ' + titleSuffix || ''
+
+    e.stopPropagation()
+
+    window.scrollTo(0, 0)
   }
 
-  /**
-   * Porfolio isotope and filter
-   */
+  const requestContent = (url) => {
+    if (url === '/new/' || url === '/new') {
+      url = '/new/home';
+    }
+    fetch(url)
+        .then(data => {
+            return data.text()
+        })
+        .then(data => {
+            document.getElementById('main').innerHTML = data
+
+            // Add a click handler to the icon-box elements on the homepage to nav to the same place as their child links
+            Array.from(document.querySelectorAll('.icon-box')).map(iconBox => {
+              iconBox.addEventListener('click', linkClickHandler)
+            });
+        })
+  }
+
+  const goToYourHome = () => {
+    document.getElementById('hero').style.display = ''
+    requestContent('/new/')
+    document.title = "Cincinnati Caledonian Pipes & Drums Band - Home"
+    // todo: set "active" class on the "Home" link
+    //onscroll(document, toggleBacktotop)
+  }
+
+  // Support browser refreshes on content pages and bookmarking of content pages
+  let validPages = ['home', 'hire', 'lessons', 'calendar', 'contact']
+  const navToContentPageWhenAppropriate = () => {
+    if (window.location.search) {
+      let targetPage = validPages.filter((p) => `?r=${p}` === window.location.search.toLowerCase())
+      if (targetPage.length === 1) {
+        document.getElementById(`lnk${targetPage[0][0].toUpperCase()}${targetPage[0].substring(1)}`).click()
+      }
+    }
+  }
+
   window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item',
-        layoutMode: 'fitRows'
-      });
+    console.log(window.location.search);
 
-      let portfolioFilters = select('#portfolio-flters li', true);
-
-      on('click', '#portfolio-flters li', function(e) {
-        e.preventDefault();
-        portfolioFilters.forEach(function(el) {
-          el.classList.remove('filter-active');
-        });
-        this.classList.add('filter-active');
-
-        portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        portfolioIsotope.on('arrangeComplete', function() {
-          AOS.refresh()
-        });
-      }, true);
+    // On initial load of the homepage, load the home content
+    if (!window.location.search) {
+      goToYourHome();
     }
 
-    // Add a click handler to the icon-box elements on the homepage to nav to the same place as their child links
-    Array.from(document.querySelectorAll('.icon-box')).map(function(iconBox) {
-      iconBox.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.location = iconBox.getElementsByTagName('a')[0].getAttribute('href');
-      });
-    });
+    document.querySelectorAll('a[href^="/"]').forEach(el =>
+      el.addEventListener('click', linkClickHandler)
+    );
+
+    // Support for user refreshing the browser on sub-page or bookmarking a sub-page
+    navToContentPageWhenAppropriate()
   });
 
   /**
@@ -245,4 +276,19 @@
     })
   });
 
+  /**
+   * Supports browser back and forward button navigating this single page app
+   */
+  window.addEventListener('popstate', e => {
+    if (e.state === null) {
+        //removeCurrentClass()
+        goToYourHome()
+    } else {
+        requestContent(e.state.url)
+        //addCurrentClass(character);
+        document.title = "Cincinnati Caledonian Pipes & Drums Band - " + e.state.titleSuffix || ''
+    }
+  });
+
+  return '/';
 })()
