@@ -1199,8 +1199,8 @@ section {
   background: #fff;
 }
 .testimonials .testimonial-item .testimonial-img {
-  width: 90px;
-  border-radius: 50px;
+  max-width: 200px;
+  border-radius: 10px;
   border: 6px solid #fff;
   float: left;
   margin: 0 10px 0 0;
@@ -1232,7 +1232,7 @@ section {
   top: 10px;
 }
 .testimonials .testimonial-item p {
-  font-style: italic;
+  /* font-style: italic; */
   margin: 15px 0 0 0;
   padding: 0;
 }
