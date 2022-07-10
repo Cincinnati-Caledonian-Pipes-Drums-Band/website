@@ -158,6 +158,10 @@ window.ccpdRoute = (function() {
     e.preventDefault()
 
     var nextPage = e.target.getAttribute('href') || e.target.getAttribute('data-url')
+    if (nextPage === '#') {
+      window.scrollTo(0, 0)
+      return
+    }
     if (window.ccpdRoute === nextPage) {
       return
     }
@@ -194,6 +198,8 @@ window.ccpdRoute = (function() {
         .then(data => {
             document.getElementById('main').innerHTML = data
 
+            initLinkClickHandlers()
+
             // Add a click handler to the icon-box elements on the homepage to nav to the same place as their child links
             Array.from(document.querySelectorAll('.icon-box')).map(iconBox => {
               iconBox.addEventListener('click', (e) => {
@@ -205,7 +211,15 @@ window.ccpdRoute = (function() {
                 document.getElementById(targetEl.getAttribute('data-target-link-id')).click()
               })
             });
+
         })
+  }
+
+  const initLinkClickHandlers = () => {
+    document.querySelectorAll('a[href^="/"]').forEach(el => {
+      el.removeEventListener('click', linkClickHandler);
+      el.addEventListener('click', linkClickHandler)
+    });
   }
 
   const goToYourHome = () => {
@@ -230,7 +244,11 @@ window.ccpdRoute = (function() {
   const updateSelectedPageLinkCss = () => {
     let activeLink = select('a[class="active"]')
     activeLink && activeLink.removeAttribute('class')
-    let newPathLink = select(`a[href="${window.location.pathname}"]`) || document.getElementById('lnkHome')
+    if (!window.location.pathname || window.location.pathname === '/') {
+      document.getElementById('lnkHome').setAttribute('class', 'active')
+      return
+    }
+    let newPathLink = select(`a[href="${window.location.pathname}"]`)
     newPathLink && newPathLink.setAttribute('class', 'active')
   }
 
@@ -240,9 +258,7 @@ window.ccpdRoute = (function() {
       goToYourHome();
     }
 
-    document.querySelectorAll('a[href^="/"]').forEach(el =>
-      el.addEventListener('click', linkClickHandler)
-    );
+    initLinkClickHandlers()
 
     // Support for user refreshing the browser on sub-page or bookmarking a sub-page
     navToContentPageWhenAppropriate()
