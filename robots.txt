@@ -1,2 +1,2 @@
 User-agent: *
-Disallow: /new/
+Disallow: /new/,/competitions/
