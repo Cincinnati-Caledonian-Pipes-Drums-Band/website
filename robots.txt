@@ -1,2 +1,7 @@
 User-agent: *
 Disallow: /new/
+Disallow: /learning-to-play-the-bagpipes/
+Disallow: /mission/
+Disallow: /about/
+Disallow: /join/
+Disallow: /faq/
