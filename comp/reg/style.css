@@ -1,0 +1,111 @@
+#wizard-step-container {
+  margin: 20px 0;
+}
+
+#wizard-content-container {
+  margin: 20px 0;
+}
+
+#wizard-navigation-container {
+  border-top: 1px solid #eee;
+  margin: 20px 0;
+  padding-top: 20px;
+}
+
+.instrument {
+  font-weight:bold;
+  font-size:16pt;
+}
+
+.instrumentWrapper {
+	transition: background-color 500ms;
+}
+
+.instrumentSelected {
+	background-color: rgba(0,0,255,0.2);
+}
+
+fieldset.override {
+  display: block;
+  margin-inline-start: 2px;
+  margin-inline-end: 2px;
+  padding-block-start: 0.35em;
+  padding-inline-start: 0.75em;
+  padding-inline-end: 0.75em;
+  padding-block-end: 0.625em;
+  min-inline-size: min-content;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+legend.override {
+  display: block;
+  width: auto;
+  margin-bottom: 0;
+  padding-inline-start: 2px;
+  padding-inline-end: 2px;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+}
+
+label.pointer {
+  cursor: pointer;
+}
+
+span.normalWeight {
+  font-weight:normal;
+}
+
+div.confirmContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div.missingFields {
+  color: red;
+  text-align: right;
+}
+
+table.reasonable {
+  min-width: 170px;
+}
+
+table.step1 {
+  max-width: 450px;
+}
+
+#paypal-button-container {
+  width: 300px;
+}
+
+/* interactive rating from: http://www.angulartutorial.net/2014/03/rating-stars-in-angular-js-using.html */
+.rating{
+  color: #b9b9b9;
+  margin: 0;
+  padding: 0;
+  font-size: 26px;
+}
+
+ul.rating {
+  display: inline-block;
+}
+
+.rating li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 1px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.rating .hovered {
+  color: rgba(0,0,255,0.2);
+}
+
+.rating .filled {
+  color: rgba(0,0,255,0.7);
+}

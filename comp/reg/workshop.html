@@ -1,0 +1,30 @@
+<div class="form-group">
+  <h3>Workshop</h3>
+  <p>
+    Please indicate your preference for workshops.
+    <br />(This is only meant to help the organizers with planning; you're not locked into these preferences.)
+  </p>
+
+  <div>
+    <form name="vm.frmWorkshop">
+      <div>
+        <label class="pointer">
+            <input type="checkbox" name="bagpipeWorkshop" ng-model="vm.user.workshopPref.bagpipes" ng-true-value="'Bagpipes'" />
+            Bagpipe workshop sessions with Barry Conway, Clark Abercrombie, Calum MacDonald
+        </label>
+      </div>
+      <div>
+        <label class="pointer">
+            <input type="checkbox" name="snareWorkshop" ng-model="vm.user.workshopPref.snare" ng-true-value="'Snare'" />
+            Snare drum workshop sessions with Jon Quigg
+        </label>
+      </div>
+      <div>
+        <label class="pointer">
+            <input type="checkbox" name="tenorWorkshop" ng-model="vm.user.workshopPref.tenor" ng-true-value="'Tenor'" />
+            Tenor workshop sessions with Linda Hall
+        </label>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="form-group">
+  <p>
+    Please select tenor drum event(s) below in which {{vm.user.name}} intends to compete.
+  </p>
+
+  <div>
+    <form name="vm.tenorForm">
+      <div ng-switch="vm.user.comp.tenor.grade">
+        <div ng-switch-when="Beginner">
+          <h4>Beginner Tenor Events (unsanctioned)</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="quickMarchTenor" ng-model="vm.user.comp.tenor.events.quickMarchTenor" ng-true-value="'Quick March'" ng-required="!(vm.user.comp.tenor.events.quickMarchTenor)" />
+              Quick March (4-part quick march in 2/4, 4/4, or 6/8)
+            </label>
+          </div>
+        </div>
+        <div ng-switch-when="Novice">
+          <h4>Novice Tenor Events</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="quickMarchTenor" ng-model="vm.user.comp.tenor.events.quickMarchTenor" ng-true-value="'Quick March'" ng-required="!(vm.user.comp.tenor.events.quickMarchTenor || vm.user.comp.tenor.events.marchSetTenor)" />
+              Quick March (4-part quick march in 2/4, 4/4, or 6/8)
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="marchSetTenor" ng-model="vm.user.comp.tenor.events.marchSetTenor" ng-true-value="'March Set'" ng-required="!(vm.user.comp.tenor.events.quickMarchTenor || vm.user.comp.tenor.events.marchSetTenor)" />
+              March Set
+            </label>
+          </div>
+        </div>
+        <div ng-switch-when="Amateur">
+          <h4>Amateur Tenor Events</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="msrTenor" ng-model="vm.user.comp.tenor.events.msrTenor" ng-true-value="'M/S/R'" ng-required="!(vm.user.comp.tenor.events.msrTenor || vm.user.comp.tenor.events.medleyTenor)" />
+              March/Strathspey/Reel
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="medleySetTenor" ng-model="vm.user.comp.tenor.events.medleyTenor" ng-true-value="'Medley'" ng-required="!(vm.user.comp.tenor.events.msrTenor || vm.user.comp.tenor.events.medleyTenor)" />
+              Medley
+            </label>
+          </div>
+        </div>
+        <div ng-switch-when="Open">
+          <h4>Open Tenor Events</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="msrTenor" ng-model="vm.user.comp.tenor.events.msrTenor" ng-true-value="'M/S/R'" ng-required="!(vm.user.comp.tenor.events.msrTenor || vm.user.comp.tenor.events.hjTenor)" />
+              March/Strathspey/Reel
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="hjTenor" ng-model="vm.user.comp.tenor.events.hjTenor" ng-true-value="'Hornpipe/Jig'" ng-required="!(vm.user.comp.tenor.events.msrTenor || vm.user.comp.tenor.events.hjTenor)" />
+              Hornpipe/Jig
+            </label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+</div>

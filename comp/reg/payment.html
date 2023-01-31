@@ -1,0 +1,27 @@
+<div class="form-group">
+  <div ng-if="!vm.paid">
+    <h2>Total Due: {{vm.total | currency}}</h2>
+    <div id="paypal-button-container"></div>
+
+    <div ng-show="vm.paymentError" style="color:red;">
+      <div>An error occurred while processing your payment: {{vm.paymentErrorMessage}}</div>
+      <div>Please try to submit your payment again.  If you continue to have problems, please email <a href="mailto:webmaster@cincypipesanddrums.org">webmaster@cincypipesanddrums.org</a>.</div>
+    </div>
+  </div>
+
+  <div ng-if="vm.paid">
+    <h1>Thank you for registering!</h1>
+    <p>As the event date gets close, we'll send an email with additional details.</p>
+
+    <hr />
+
+    <div class="star-rating"
+    star-rating rating-value="$parent.vm.rating"
+    hover-value="$parent.vm.hoverRating"
+    data-max="5"
+    feedback="$parent.vm.feedback"
+    rating-text-delimiter="'~~'"
+    rating-text="'Awful/Very Difficult~~Pretty Bad~~OK~~Pretty Good~~Excellent'">
+    </div>
+  </div>
+</div>

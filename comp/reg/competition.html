@@ -1,0 +1,231 @@
+<div class="form-group">
+  <p>
+    In order to compete in the solo competition, {{vm.user.name}} must be registered with the EUSPBA, MWPBA, or other pipe band association (except for grade 5 events).
+    If you have your {{vm.thisYear}} registration number, please enter it below, but if not, no problem, just check the "I haven't registered yet" box.
+  </p>
+
+  <div>
+    <form name="vm.competitionForm">
+      <div>
+        <label>{{vm.thisYear}} EUSPBA Number:</label>
+        <input type="text" class="form-control" name="euspba" ng-model="vm.user.comp.euspba" />
+      </div>
+      <div>
+        <label>Other Pipe Band Association Name:</label>
+        <input type="text" class="form-control" name="association" ng-model="vm.user.comp.association" />
+      </div>
+      <div>
+        <label>Other Pipe Band Association Number/ID:</label>
+        <input type="text" class="form-control" name="number" ng-model="vm.user.comp.number" />
+      </div>
+      <div>
+        <label class="pointer">
+            <input type="checkbox" name="later" ng-model="vm.user.comp.later" />
+            I haven't registered yet for {{vm.thisYear}} but will register ahead of the competition and communicate my membership information.
+        </label>
+      </div>
+
+      <div>
+        <h3>{{vm.user.name}} will be competing on which instrument(s)?</h3>
+        
+        <!-- bagpipes -->
+        <div ng-class="vm.user.comp.bagpipes.checked ? 'instrumentWrapper instrumentSelected' : 'instrumentWrapper'">
+          <label class="pointer">
+              <input type="checkbox" name="bagpipes" ng-model="vm.user.comp.bagpipes.checked" ng-required="!(vm.user.comp.bagpipes.checked || vm.user.comp.snare.checked || vm.user.comp.tenor.checked || vm.user.comp.bass.checked)" />
+              <span class="instrument">Bagpipes (EUSPBA-sanctioned)</span>
+          </label>
+        </div>
+        <div ng-if="vm.user.comp.bagpipes.checked">
+            <fieldset class="override">
+              <legend class="override">Bagpipe grade level for {{vm.user.name}}:</legend>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="bagpipeGrade" ng-model="vm.user.comp.bagpipes.grade" value="novice" ng-required="!vm.user.comp.bagpipes.grade" />
+                  Novice (unsanctioned, on practice chanter)
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="bagpipeGrade" ng-model="vm.user.comp.bagpipes.grade" value="5" ng-required="!vm.user.comp.bagpipes.grade" />
+                  Grade 5
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="bagpipeGrade" ng-model="vm.user.comp.bagpipes.grade" value="4 Jr" ng-required="!vm.user.comp.bagpipes.grade" />
+                  Grade 4 Jr. (age 17 and under)
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="bagpipeGrade" ng-model="vm.user.comp.bagpipes.grade" value="4 Sr" ng-required="!vm.user.comp.bagpipes.grade" />
+                  Grade 4 Sr. (age 18 and over)
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="bagpipeGrade" ng-model="vm.user.comp.bagpipes.grade" value="3" ng-required="!vm.user.comp.bagpipes.grade" />
+                  Grade 3
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="bagpipeGrade" ng-model="vm.user.comp.bagpipes.grade" value="2" ng-required="!vm.user.comp.bagpipes.grade" />
+                  Grade 2
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="bagpipeGrade" ng-model="vm.user.comp.bagpipes.grade" value="1" ng-required="!vm.user.comp.bagpipes.grade" />
+                  Grade 1
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="bagpipeGrade" ng-model="vm.user.comp.bagpipes.grade" value="Open" ng-required="!vm.user.comp.bagpipes.grade" />
+                  Open/Professional
+                </label>
+              </div>
+            </fieldset>
+        </div>
+        
+        <!-- snare -->
+        <div ng-class="vm.user.comp.snare.checked ? 'instrumentWrapper instrumentSelected' : 'instrumentWrapper'">
+          <label class="pointer">
+              <input type="checkbox" name="snare" ng-model="vm.user.comp.snare.checked" ng-required="!(vm.user.comp.bagpipes.checked || vm.user.comp.snare.checked || vm.user.comp.tenor.checked || vm.user.comp.bass.checked)" ng-change="vm.selectInstrument('snare')" />
+              <span class="instrument">Snare Drum (EUSPBA-sanctioned)</span>
+          </label>
+        </div>
+        <div ng-if="vm.user.comp.snare.checked">
+            <fieldset class="override">
+              <legend class="override">Snare grade level for {{vm.user.name}}:</legend>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="snareGrade" ng-model="vm.user.comp.snare.grade" value="novice" ng-required="!vm.user.comp.snare.grade" />
+                  Novice (unsanctioned, on practice pad)
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="snareGrade" ng-model="vm.user.comp.snare.grade" value="5" ng-required="!vm.user.comp.snare.grade" />
+                  Grade 5
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="snareGrade" ng-model="vm.user.comp.snare.grade" value="4 Jr" ng-required="!vm.user.comp.snare.grade" />
+                  Grade 4 Jr. (age 17 and under)
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="snareGrade" ng-model="vm.user.comp.snare.grade" value="4 Sr" ng-required="!vm.user.comp.snare.grade" />
+                  Grade 4 Sr. (age 18 and over)
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="snareGrade" ng-model="vm.user.comp.snare.grade" value="3" ng-required="!vm.user.comp.snare.grade" />
+                  Grade 3
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="snareGrade" ng-model="vm.user.comp.snare.grade" value="2" ng-required="!vm.user.comp.snare.grade" />
+                  Grade 2
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="snareGrade" ng-model="vm.user.comp.snare.grade" value="1" ng-required="!vm.user.comp.snare.grade" />
+                  Grade 1
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="snareGrade" ng-model="vm.user.comp.snare.grade" value="Open" ng-required="!vm.user.comp.snare.grade" />
+                  Open/Professional
+                </label>
+              </div>
+            </fieldset>
+        </div>
+        
+        <!-- tenor -->
+        <div ng-class="vm.user.comp.tenor.checked ? 'instrumentWrapper instrumentSelected' : 'instrumentWrapper'">
+          <label class="pointer">
+              <input type="checkbox" name="tenor" ng-model="vm.user.comp.tenor.checked" ng-required="!(vm.user.comp.bagpipes.checked || vm.user.comp.snare.checked || vm.user.comp.tenor.checked || vm.user.comp.bass.checked)" ng-change="vm.selectInstrument('tenor')" />
+              <span class="instrument">Tenor Drum (EUSPBA-sanctioned)</span>
+          </label>
+        </div>
+        <div ng-if="vm.user.comp.tenor.checked">
+            <fieldset class="override">
+              <legend class="override">Tenor grade level for {{vm.user.name}}:</legend>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="tenorGrade" ng-model="vm.user.comp.tenor.grade" value="Beginner" ng-required="!vm.user.comp.tenor.grade" />
+                  Beginner (unsanctioned)
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="tenorGrade" ng-model="vm.user.comp.tenor.grade" value="Novice" ng-required="!vm.user.comp.tenor.grade" />
+                  Novice
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="tenorGrade" ng-model="vm.user.comp.tenor.grade" value="Amateur" ng-required="!vm.user.comp.tenor.grade" />
+                  Amateur
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="tenorGrade" ng-model="vm.user.comp.tenor.grade" value="Open" ng-required="!vm.user.comp.tenor.grade" />
+                  Open/Professional
+                </label>
+              </div>
+            </fieldset>
+        </div>
+
+        <!-- bass -->
+        <div ng-class="vm.user.comp.bass.checked ? 'instrumentWrapper instrumentSelected' : 'instrumentWrapper'">
+          <label class="pointer">
+              <input type="checkbox" name="bass" ng-model="vm.user.comp.bass.checked" ng-required="!(vm.user.comp.bagpipes.checked || vm.user.comp.snare.checked || vm.user.comp.tenor.checked || vm.user.comp.bass.checked)" ng-change="vm.selectInstrument('bass')" />
+              <span class="instrument">Bass Drum (EUSPBA-sanctioned)</span>
+          </label>
+        </div>
+        <div ng-if="vm.user.comp.bass.checked">
+            <fieldset class="override">
+              <legend class="override">Bass drum grade level for {{vm.user.name}}:</legend>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="bassGrade" ng-model="vm.user.comp.bass.grade" value="Beginner" ng-required="!vm.user.comp.bass.grade" />
+                  Beginner (unsanctioned)
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="bassGrade" ng-model="vm.user.comp.bass.grade" value="Novice" ng-required="!vm.user.comp.bass.grade" />
+                  Novice
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="bassGrade" ng-model="vm.user.comp.bass.grade" value="Amateur" ng-required="!vm.user.comp.bass.grade" />
+                  Amateur
+                </label>
+              </div>
+              <div>
+                <label class="pointer">
+                  <input type="radio" name="bassGrade" ng-model="vm.user.comp.bass.grade" value="Open" ng-required="!vm.user.comp.bass.grade" />
+                  Open/Professional
+                </label>
+              </div>
+            </fieldset>
+        </div>
+
+      </div>
+    </form>
+  </div>
+  
+</div>

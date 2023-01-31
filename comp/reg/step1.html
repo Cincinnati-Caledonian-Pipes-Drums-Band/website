@@ -1,0 +1,112 @@
+<div class="form-group">
+	<div ng-show="vm.registrantIndex == 0">
+		<p>
+			Thank you for registering for the 5th annual Cincinnati Indoor Solo Competition & Workshop.
+			This secure online registration process allows you to register for both the competition and workshop.
+			If you are registering for multiple people, start with the first registrant, and you will be able to register another person after the first registration is completed.
+			Secure payment is requested via PayPal at the end of the registration process.
+		</p>
+		<p>
+			If you prefer to not use an online registration experience, please email <a href="mailto:webmaster@cincypipesanddrums.org">webmaster@cincypipesanddrums.org</a> and we will be happy to process your registration manually.
+		</p>
+	</div>
+	<div ng-show="vm.registrantIndex > 0">
+		Please enter details of additional registrant below.
+	</div>
+
+  <div>
+    <form name="vm.step1Form">
+			<table class="table step1">
+				<tr>
+					<td><label>Name:</label></td>
+					<td>
+							<input type="text" class="form-control" name="name" ng-model="vm.user.name" required />
+							<div style="color:red" ng-show="vm.step1Form.name.$dirty && vm.step1Form.name.$invalid">
+								<span>Name is required.</span>
+							</div>
+					</td>
+				</tr>
+				<tr ng-if="vm.registrantIndex == 0">
+					<td><label>Street Address:</label></td>
+					<td>
+						<input type="text" class="form-control" name="streetAddress1" ng-model="vm.user.streetAddress1" required />
+						<div style="color:red" ng-show="vm.step1Form.streetAddress1.$dirty && vm.step1Form.streetAddress1.$invalid">
+							<span>Street Address is required.</span>
+						</div>
+					</td>
+				</tr>
+				<tr ng-if="vm.registrantIndex == 0">
+					<td><label>Street Address 2 (optional):</label></td>
+					<td><input type="text" class="form-control" name="streetAddress2" ng-model="vm.user.streetAddress2" /></td>
+				</tr>
+				<tr ng-if="vm.registrantIndex == 0">
+					<td><label>City:</label></td>
+					<td>
+						<input type="text" class="form-control" name="city" ng-model="vm.user.city" required />
+						<div style="color:red" ng-show="vm.step1Form.city.$dirty && vm.step1Form.city.$invalid">
+							<span>City is required.</span>
+						</div>
+					</td>
+				</tr>
+				<tr ng-if="vm.registrantIndex == 0">
+					<td><label>State/Province:</label></td>
+					<td>
+						<input type="text" class="form-control" name="state" ng-model="vm.user.state" required />
+						<div style="color:red" ng-show="vm.step1Form.state.$dirty && vm.step1Form.state.$invalid">
+							<span>State/Province is required (abbreviation or full name).</span>
+						</div>
+					</td>
+				</tr>
+				<tr ng-if="vm.registrantIndex == 0">
+					<td><label>Zip Code:</label></td>
+					<td>
+						<input type="text" class="form-control" name="zipCode" ng-model="vm.user.zipCode" required />
+						<div style="color:red" ng-show="vm.step1Form.zipCode.$dirty && vm.step1Form.zipCode.$invalid">
+							<span>Zip Code is required.</span>
+						</div>
+					</td>
+				</tr>
+				<tr ng-if="vm.registrantIndex == 0">
+					<td><label>Phone Number (optional):</label></td>
+					<td>
+							<input type="phone" class="form-control" name="phoneNumber" ng-model="vm.user.phoneNumber" />
+					</td>
+				</tr>
+				<tr ng-if="vm.registrantIndex == 0">
+					<td><label>Email Address:</label></td>
+					<td>
+						<input type="email" class="form-control" name="email" ng-model="vm.user.email" required />
+						<div style="color:red" ng-show="vm.step1Form.email.$dirty && vm.step1Form.email.$invalid">
+							<span>Valid email address is required.</span>
+						</div>
+					</td>
+				</tr>
+			</table>
+		
+			<fieldset class="override" style="margin-top:20px;">
+				<legend class="override">Options</legend>
+				<div>
+					<label class="pointer">
+							<input type="checkbox" ng-model="vm.user.competition" name="competition" ng-required="!(vm.user.competition || vm.user.workshop)" />
+							Sign up {{vm.user.name}} for Solo Competition
+							<span class="normalWeight">{{vm.allEventsCost | currency}} for all events for each instrument (or {{vm.perEventCost | currency}} per event)</span>
+					</label>
+				</div>
+				<div>
+					<label class="pointer">
+						<input type="checkbox" ng-model="vm.user.workshop" name="workshop" ng-required="!(vm.user.competition || vm.user.workshop)" />
+						Sign up {{vm.user.name}} for Workshop led by competition judges:
+						<span class="normalWeight">{{vm.workshopCost | currency}} (covers all workshops)</span>
+					</label>
+				</div>
+				<div>
+						<br /><strong>Note</strong> the separate flat fees for workshops and competition, however, 
+						a piper or drummer attending both the workshops and competition pays {{vm.typicalMax | currency}}.
+						For example, if you register to compete in all Grade 4 Sr. bagpipe events, the cost would be {{vm.allEventsCost | currency}}
+						and if you also register for the workshop the total cost for both the competition and workshop would be {{vm.typicalMax | currency}}.
+				</div>
+			</fieldset>
+	  </form>
+  </div>
+  
+</div>
