@@ -154,7 +154,7 @@
         <div ng-class="vm.user.comp.tenor.checked ? 'instrumentWrapper instrumentSelected' : 'instrumentWrapper'">
           <label class="pointer">
               <input type="checkbox" name="tenor" ng-model="vm.user.comp.tenor.checked" ng-required="!(vm.user.comp.bagpipes.checked || vm.user.comp.snare.checked || vm.user.comp.tenor.checked || vm.user.comp.bass.checked)" ng-change="vm.selectInstrument('tenor')" />
-              <span class="instrument">Tenor Drum (EUSPBA-sanctioned)</span>
+              <span class="instrument">Tenor Drum (NOT EUSPBA-sanctioned)</span>
           </label>
         </div>
         <div ng-if="vm.user.comp.tenor.checked">
@@ -191,7 +191,7 @@
         <div ng-class="vm.user.comp.bass.checked ? 'instrumentWrapper instrumentSelected' : 'instrumentWrapper'">
           <label class="pointer">
               <input type="checkbox" name="bass" ng-model="vm.user.comp.bass.checked" ng-required="!(vm.user.comp.bagpipes.checked || vm.user.comp.snare.checked || vm.user.comp.tenor.checked || vm.user.comp.bass.checked)" ng-change="vm.selectInstrument('bass')" />
-              <span class="instrument">Bass Drum (EUSPBA-sanctioned)</span>
+              <span class="instrument">Bass Drum (NOT EUSPBA-sanctioned)</span>
           </label>
         </div>
         <div ng-if="vm.user.comp.bass.checked">
