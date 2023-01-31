@@ -1,0 +1,86 @@
+<div class="form-group">
+  <h3>
+    Confirmation for {{vm.showAllNames()}}
+	</h3>
+
+  <div>
+    <form name="vm.confirmForm">
+		<div class="confirmContainer">
+			<div ng-repeat="user in vm.users">
+				<fieldset class="override">
+					<legend class="override"><strong>{{user.name}}</strong></legend>
+					<address ng-show="user.streetAddress1">
+						<div>{{user.streetAddress1}}</div>
+						<div ng-show="vm.user.streetAddress2">{{user.streetAddress2}}</div>
+						<div>{{user.city}}, {{user.state}} {{user.zipCode}}</div>
+						<div>{{user.phoneNumber}}</div>
+						<div>{{user.email}}</div>
+					</address>
+				
+					<div>
+						<table class="reasonable">
+							<tr>
+								<td>Competition:</td>
+								<td>{{vm.displayYesNo('competition')}}</td>
+							</tr>
+							<tr ng-show="user.comp.bagpipes.checked">
+								<td>Bagpipe Event(s):</td>
+								<td>Grade {{user.comp.bagpipes.grade}} {{vm.getEvents(user, 'bagpipes')}}</td>
+							</tr>
+							<tr ng-show="user.comp.snare.checked">
+								<td>Snare Event(s):</td>
+								<td>Grade {{user.comp.snare.grade}} {{vm.getEvents(user, 'snare')}}</td>
+							</tr>
+							<tr ng-show="user.comp.tenor.checked">
+								<td>Tenor Event(s):</td>
+								<td>{{user.comp.tenor.grade}} {{vm.getEvents(user, 'tenor')}}</td>
+							</tr>
+							<tr ng-show="user.comp.bass.checked">
+								<td>Bass Event(s):</td>
+								<td>{{user.comp.bass.grade}} {{vm.getEvents(user, 'bass')}}</td>
+							</tr>
+							<tr ng-show="user.competition">
+								<td>Event(s) Cost:</td>
+								<td>{{vm.getEventCost(user) | currency}}</td>
+							</tr>
+							<tr>
+								<td>Workshop:</td>
+								<td>{{vm.displayYesNo('workshop')}}</td>
+							</tr>
+							<tr ng-show="user.workshop">
+								<td>Workshop Cost:</td>
+								<td>{{vm.displayWorkshopCost(user) | currency}} <span ng-show="user.workshopCost < vm.workshopCost">(discount applied from competition involvement)</span></td>
+							</tr>
+							<tr ng-show="user.competition && user.workshop">
+								<td>Total:</td>
+								<td>{{(user.competitionCost + user.workshopCost) | currency}}</td>
+							</tr>
+						</table>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+	  
+	  <h3 ng-show="vm.users.length > 1">
+			Total cost for all registrants: {{vm.displayTotalCost() | currency}}
+		</h3>
+	  
+	  <hr />
+	  
+	  <h3>Does the above information look correct?  (If you need to make changes, use the "Previous step" button to revisit earlier steps.)</h3>
+	  <div>
+		<label class="pointer">
+			<input type="radio" ng-model="vm.user.confirmAnother" value="No" ng-required="!(vm.user.confirmAnother)" />
+			Yes.  I'm ready to checkout.
+		</label>
+	  </div>
+	  <div>
+		<label class="pointer">
+			<input type="radio" ng-model="vm.user.confirmAnother" value="Yes" ng-required="!(vm.user.confirmAnother)" />
+			Yes.  The above info looks correct, but I want to register another person before checking out.
+		</label>
+	  </div>
+    </form>
+  </div>
+  
+</div>

@@ -1,0 +1,112 @@
+<div class="form-group">
+  <p>
+    Please select snare drum event(s) below in which {{vm.user.name}} intends to compete.
+  </p>
+
+  <div>
+    <form name="vm.snareForm">
+      <div ng-switch="vm.user.comp.snare.grade">
+        <div ng-switch-when="novice">
+          <h4>Novice (unsanctioned, practice pad)</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="novice" ng-model="vm.user.comp.snare.events.novice" ng-true-value="'2-Part March'" ng-required="!(vm.user.comp.snare.events.novice)" />
+              1 2-parted march or the first 2 parts of a longer march in 2/4, 3/4 or 4/4 time once through on practice pad
+            </label>
+          </div>
+        </div>
+        <div ng-switch-when="5">
+          <h4>Grade 5 Snare Event (on snare, piper recommended but optional)</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="grade5" ng-model="vm.user.comp.snare.events.grade5" ng-true-value="'2-Part March'" ng-required="!(vm.user.comp.snare.events.grade5)" />
+              1 2-parted march or the first 2 parts of a longer march in 2/4, 3/4 or 4/4 time once through on the snare drum (not drum pad)
+            </label>
+          </div>
+        </div>
+        <div ng-switch-when="4 Jr|4 Sr" ng-switch-when-separator="|">
+          <h4>Grade 4 Snare Events</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="twoFourSnare" ng-model="vm.user.comp.snare.events.twoFourSnare" ng-true-value="'2/4 March'" ng-required="!(vm.user.comp.snare.events.twoFourSnare || vm.user.comp.snare.events.marchSetSnare)" />
+              2/4 March
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="marchSetSnare" ng-model="vm.user.comp.snare.events.marchSetSnare" ng-true-value="'March Set'" ng-required="!(vm.user.comp.snare.events.twoFourSnare || vm.user.comp.snare.events.marchSetSnare)" />
+              March Set
+            </label>
+          </div>
+        </div>
+        <div ng-switch-when="3">
+          <h4>Grade 3 Snare Events</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="twoFourSnare" ng-model="vm.user.comp.snare.events.twoFourSnare" ng-true-value="'2/4 March'" ng-required="!(vm.user.comp.snare.events.twoFourSnare || vm.user.comp.snare.events.srSnare || vm.user.comp.snare.events.sixEightSnare)" />
+              2/4 March
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="srSnare" ng-model="vm.user.comp.snare.events.srSnare" ng-true-value="'Strathspey/Reel'" ng-required="!(vm.user.comp.snare.events.twoFourSnare || vm.user.comp.snare.events.srSnare || vm.user.comp.snare.events.sixEightSnare)" />
+              Strathspey/Reel
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="sixEightSnare" ng-model="vm.user.comp.snare.events.sixEightSnare" ng-true-value="'6/8 March'" ng-required="!(vm.user.comp.snare.events.twoFourSnare || vm.user.comp.snare.events.srSnare || vm.user.comp.snare.events.sixEightSnare)" />
+              6/8 March
+            </label>
+          </div>
+        </div>
+        <div ng-switch-when="2">
+          <h4>Grade 2 Snare Events</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="msrSnare" ng-model="vm.user.comp.snare.events.msrSnare" ng-true-value="'M/S/R'" ng-required="!(vm.user.comp.snare.events.msrSnare || vm.user.comp.snare.events.hjSnare)" />
+              March/Strathspey/Reel
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="hjSnare" ng-model="vm.user.comp.snare.events.hjSnare" ng-true-value="'Hornpipe/Jig'" ng-required="!(vm.user.comp.snare.events.msrSnare || vm.user.comp.snare.events.hjSnare)" />
+              Hornpipe/Jig
+            </label>
+          </div>
+        </div>
+        <div ng-switch-when="1">
+          <h4>Grade 1 Snare Events</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="msrSnare" ng-model="vm.user.comp.snare.events.msrSnare" ng-true-value="'M/S/R'" ng-required="!(vm.user.comp.snare.events.msrSnare || vm.user.comp.snare.events.hjSnare)" />
+              March/Strathspey/Reel
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="hjSnare" ng-model="vm.user.comp.snare.events.hjSnare" ng-true-value="'Hornpipe/Jig'" ng-required="!(vm.user.comp.snare.events.msrSnare || vm.user.comp.snare.events.hjSnare)" />
+              Hornpipe/Jig
+            </label>
+          </div>
+        </div>
+        <div ng-switch-when="Open">
+          <h4>Open Snare Events</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="msrSnare" ng-model="vm.user.comp.snare.events.msrSnare" ng-true-value="'M/S/R'" ng-required="!(vm.user.comp.snare.events.msrSnare || vm.user.comp.snare.events.hjSnare)" />
+              March/Strathspey/Reel
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="hjSnare" ng-model="vm.user.comp.snare.events.hjSnare" ng-true-value="'Hornpipe/Jig'" ng-required="!(vm.user.comp.snare.events.msrSnare || vm.user.comp.snare.events.hjSnare)" />
+              Hornpipe/Jig
+            </label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+</div>

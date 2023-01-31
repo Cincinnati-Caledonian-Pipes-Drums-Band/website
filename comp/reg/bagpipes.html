@@ -1,0 +1,153 @@
+<div class="form-group">
+  <p>
+    Please select bagpipe event(s) below in which {{vm.user.name}} intends to compete.
+  </p>
+
+  <div>
+    <form name="vm.bagpipesForm">
+      <div ng-switch="vm.user.comp.bagpipes.grade">
+        <div ng-switch-when="novice">
+          <h4>Novice Bagpipe Event</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="novice" ng-model="vm.user.comp.bagpipes.events.novice" ng-true-value="'March'" required="required" />
+              One four-parted or two different two-parted marches in 2/4, 4/4, or 6/8 time on practice chanter.
+            </label>
+          </div>
+        </div>
+        <div ng-switch-when="5">
+          <h4>Grade 5 Bagpipe Events</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="grade5" ng-model="vm.user.comp.bagpipes.events.grade5" ng-true-value="'2-Part March'" ng-required="!(vm.user.comp.bagpipes.events.grade5 || vm.user.comp.bagpipes.events.groundOnly)" />
+              1 2-parted march or the first 2 parts of a longer march in 2/4, 3/4 or 4/4 time once through on the bagpipe (not practice chanter)
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="piob" ng-model="vm.user.comp.bagpipes.events.groundOnly" ng-true-value="'Piob Ground'" ng-required="!(vm.user.comp.bagpipes.events.grade5 || vm.user.comp.bagpipes.events.groundOnly)" />
+              Piobaireachd Ground
+            </label>
+          </div>
+        </div>
+        <div ng-switch-when="4 Jr|4 Sr" ng-switch-when-separator="|">
+          <h4>Grade 4 Bagpipe Events</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="piob" ng-model="vm.user.comp.bagpipes.events.piob" ng-true-value="'Piobaireachd'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.twoFour || vm.user.comp.bagpipes.events.sr || vm.user.comp.bagpipes.events.sixEight)" />
+              Piobaireachd (full tune)
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="twoFour" ng-model="vm.user.comp.bagpipes.events.twoFour" ng-true-value="'2/4 March'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.twoFour || vm.user.comp.bagpipes.events.sr || vm.user.comp.bagpipes.events.sixEight)" />
+              2/4 March
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="sixEight" ng-model="vm.user.comp.bagpipes.events.sixEight" ng-true-value="'6/8 March'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.twoFour || vm.user.comp.bagpipes.events.sr || vm.user.comp.bagpipes.events.sixEight)" />
+              6/8 March
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="sr" ng-model="vm.user.comp.bagpipes.events.sr" ng-true-value="'Strathspey/Reel'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.twoFour || vm.user.comp.bagpipes.events.sr || vm.user.comp.bagpipes.events.sixEight)" />
+              Strathspey/Reel (2 parts each)
+            </label>
+          </div>
+        </div>
+        <div ng-switch-when="3">
+          <h4>Grade 3 Bagpipe Events</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="piob" ng-model="vm.user.comp.bagpipes.events.piob" ng-true-value="'Piobaireachd'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.twoFour || vm.user.comp.bagpipes.events.sr || vm.user.comp.bagpipes.events.jig)" />
+              Piobaireachd
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="twoFour" ng-model="vm.user.comp.bagpipes.events.twoFour" ng-true-value="'2/4 March'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.twoFour || vm.user.comp.bagpipes.events.sr || vm.user.comp.bagpipes.events.jig)" />
+              2/4 March
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="sr" ng-model="vm.user.comp.bagpipes.events.sr" ng-true-value="'Strathspey/Reel'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.twoFour || vm.user.comp.bagpipes.events.sr || vm.user.comp.bagpipes.events.jig)" />
+              Strathspey/Reel
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="jig" ng-model="vm.user.comp.bagpipes.events.jig" ng-true-value="'Jig'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.twoFour || vm.user.comp.bagpipes.events.sr || vm.user.comp.bagpipes.events.jig)" />
+              Jig
+            </label>
+          </div>
+        </div>
+        <div ng-switch-when="2">
+          <h4>Grade 2 Bagpipe Events</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="piob" ng-model="vm.user.comp.bagpipes.events.piob" ng-true-value="'Piobaireachd'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.twoFour || vm.user.comp.bagpipes.events.sr || vm.user.comp.bagpipes.events.hj)" />
+              Piobaireachd (submit 2)
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="twoFour" ng-model="vm.user.comp.bagpipes.events.twoFour" ng-true-value="'2/4 March'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.twoFour || vm.user.comp.bagpipes.events.sr || vm.user.comp.bagpipes.events.hj)" />
+              2/4 March (submit 2)
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="sr" ng-model="vm.user.comp.bagpipes.events.sr" ng-true-value="'Strathspey/Reel'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.twoFour || vm.user.comp.bagpipes.events.sr || vm.user.comp.bagpipes.events.hj)" />
+              Strathspey/Reel (submit 2 of each)
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="hj" ng-model="vm.user.comp.bagpipes.events.hj" ng-true-value="'Hornpipe/Jig'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.twoFour || vm.user.comp.bagpipes.events.sr || vm.user.comp.bagpipes.events.hj)" />
+              Hornpipe/Jig (submit 1)
+            </label>
+          </div>
+        </div>
+        <div ng-switch-when="1">
+          <h4>Grade 1 Bagpipe Events</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="piob" ng-model="vm.user.comp.bagpipes.events.piob" ng-true-value="'Piobaireachd'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.msr || vm.user.comp.bagpipes.events.hj)" />
+              Piobaireachd (submit 3)
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="msr" ng-model="vm.user.comp.bagpipes.events.msr" ng-true-value="'M/S/R'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.msr || vm.user.comp.bagpipes.events.hj)" />
+              March/Strathspey/Reel (submit 3)
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="hj" ng-model="vm.user.comp.bagpipes.events.hj" ng-true-value="'Hornpipe/Jig'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.msr || vm.user.comp.bagpipes.events.hj)" />
+              Hornpipe/Jig (submit 2)
+            </label>
+          </div>
+        </div>
+        <div ng-switch-when="Open">
+          <h4>Open Bagpipe Events</h4>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="piob" ng-model="vm.user.comp.bagpipes.events.piob" ng-true-value="'Piobaireachd'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.msr)" />
+              Piobaireachd (submit 4)
+            </label>
+          </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="msr" ng-model="vm.user.comp.bagpipes.events.msr" ng-true-value="'M/S/R'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.msr)" />
+              March/Strathspey/Reel (submit 4)
+            </label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
