@@ -2,14 +2,6 @@
     <head>
         <script data-require="angular.js@1.4.8" data-semver="1.4.8" src="https://code.angularjs.org/1.5.10/angular.js"></script>
         <script src="https://code.jquery.com/jquery-2.1.4.js" data-semver="2.1.4" data-require="jquery@*"></script>
-    </head>
-    <body ng-app="app">
-        <h1>This page is designed to test send email via AWS SES</h1>
-
-        <div id="email-container" ng-controller="EmailController as vm">
-            <button type="button" ng-click="vm.sendTestEmail()">Send Test Email</button>
-        </div>
-
         <script>
             (function () {
                 angular.module('app', []);
@@ -17,6 +9,7 @@
 
                 function emailController() {
             		var vm = this;
+                    vm.test = 'hello';
                 }
 
                 function sendTestEmail() {
@@ -45,5 +38,13 @@
                 }
             })();
         </script>
+    </head>
+    <body ng-app="app">
+        <h1>This page is designed to test send email via AWS SES</h1>
+
+        <div id="email-container" ng-controller="EmailController as vm">
+            <button type="button" ng-click="vm.sendTestEmail()">Send Test Email</button>
+            <br /><label>{{vm.test}}</label>
+        </div>
     </body>
 </html>
