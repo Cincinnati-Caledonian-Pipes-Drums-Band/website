@@ -10,31 +10,31 @@
                 function emailController() {
             		var vm = this;
                     vm.test = 'hello';
-                }
 
-                function sendTestEmail() {
-                    fetch('https://ujknic9ujb.execute-api.us-east-1.amazonaws.com/default/lambda-sendemail-ses', {
-                        method: 'POST',
-                        mode: 'cors',
-                        cache: 'no-cache',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            "toEmails": ["andrew.douglas11@gmail.com"],
-                            "subject": "Indoor Competition Registration",
-                            "message": JSON.stringify({
-                                registration: {
-                                    users: 1,
-                                    totalCost: 2,
-                                    paid: 3,
-                                    acknowledge: 4
-                                }
-                            }, null, 2)
-                        })
-                    }).then(function() {
-                        console.log('email sent successfully');
-                    }).catch(function(err){
-                        console.error('Error sending email: ' + err.message);
-                    });
+                    vm.sendTestEmail = function() {
+                        fetch('https://ujknic9ujb.execute-api.us-east-1.amazonaws.com/default/lambda-sendemail-ses', {
+                            method: 'POST',
+                            mode: 'cors',
+                            cache: 'no-cache',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                "toEmails": ["andrew.douglas11@gmail.com"],
+                                "subject": "Indoor Competition Registration",
+                                "message": JSON.stringify({
+                                    registration: {
+                                        users: 1,
+                                        totalCost: 2,
+                                        paid: 3,
+                                        acknowledge: 4
+                                    }
+                                }, null, 2)
+                            })
+                        }).then(function() {
+                            console.log('email sent successfully');
+                        }).catch(function(err){
+                            console.error('Error sending email: ' + err.message);
+                        });
+                    }
                 }
             })();
         </script>
