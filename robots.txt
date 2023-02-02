@@ -6,3 +6,4 @@ Disallow: /about/
 Disallow: /join/
 Disallow: /faq/
 Disallow: /comp/reg/
+Disallow: /comp/emailtest/
