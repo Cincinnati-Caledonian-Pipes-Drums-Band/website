@@ -1,0 +1,178 @@
+<html>
+<body>
+
+<div id="smart-button-container">
+    <div style="text-align: center;">
+      <div id="paypal-button-container"></div>
+    </div>
+</div>
+<div>
+    <div>
+        Input: <button onclick="flattenIt()">Flatten</button>
+        <br /><textarea id="txa1" rows="10" cols="130"></textarea>
+    </div>
+    <div>
+        Output: 
+        <br /><textarea id="txa2" rows="10" cols="130"></textarea>
+    </div>
+</div>
+<script src="https://www.paypal.com/sdk/js?client-id=Aawp96_aRb-inVxRCmWGdhNuViyuDPVLLR6pB3BY4a7c1TOEq625UySC1pA-g4PcHoCN2Xm9v4UCmrhm&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+<script>
+  // https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-javascript-objects
+  Object.flatten = function(data) {
+    var result = {};
+    function recurse (cur, prop) {
+        if (Object(cur) !== cur) {
+            result[prop] = cur;
+        } else if (Array.isArray(cur)) {
+             for(var i=0, l=cur.length; i<l; i++)
+                 recurse(cur[i], prop + "[" + i + "]");
+            if (l == 0)
+                result[prop] = [];
+        } else {
+            var isEmpty = true;
+            for (var p in cur) {
+                isEmpty = false;
+                recurse(cur[p], prop ? prop+"."+p : p);
+            }
+            if (isEmpty && prop)
+                result[prop] = {};
+        }
+    }
+    recurse(data, "");
+    return result;
+  }
+  function flattenIt() {
+    let json = JSON.parse(document.getElementById("txa1").value);
+    let flattened = JSON.stringify(Object.flatten(json));
+    let shortened = flattened.replace(/registration\./g, "");
+    let final = JSON.parse(shortened);
+    let max = 0;
+    let pair = 0;
+    for (let prop in final) {
+        max = (prop.length > max) ? prop.length : max;
+        let valueLength = final[prop].toString().length;
+        pair = (max + valueLength > pair) ? max + valueLength : pair;
+    }
+    console.log(`Max prop length: ${max}.  Max pair length ${pair}.`);
+
+    let items = [];
+    for (let p in final) {
+        if (JSON.stringify(final[p]) === '{}') {
+            continue;
+        }
+        items.push({
+            "name": p,
+            "description": final[p],
+            "unit_amount": {
+               "currency_code": "USD",
+               "value": "0"
+             },
+             "quantity": "1"
+        });
+    }
+    //document.getElementById('txa2').value = JSON.stringify(items);
+    return items;
+  }
+  function initPayPalButton() {
+    paypal.Buttons({
+      style: {
+        shape: 'rect',
+        color: 'gold',
+        layout: 'vertical',
+        label: 'paypal',
+        
+      },
+
+      createOrder: function(data, actions) {
+        let madeUpValue = 55;
+        let workingPP = {
+            "purchase_units": [{
+                "amount": {
+                "currency_code": "USD",
+                "value": `${madeUpValue}`,
+                "breakdown": {
+                    "item_total": {  /* Required when including the items array */
+                        "currency_code": "USD",
+                        "value": `${madeUpValue}`
+                    }
+                }
+            }}]
+        };
+
+        let allItems = [{
+            "name": "Summary",
+            "description": "Total Paid", /* Item details will also be in the completed paypal.com transaction view */
+             "unit_amount": {
+               "currency_code": "USD",
+               "value": `${madeUpValue}`
+             },
+             "quantity": "1"
+        }];
+        allItems.push.apply(allItems, flattenIt());
+        workingPP.purchase_units[0].items = allItems;
+        document.getElementById('txa2').value = JSON.stringify(workingPP);
+        return actions.order.create(workingPP);
+        return actions.order.create({
+      "purchase_units": [{
+         "amount": {
+           "currency_code": "USD",
+           "value": "51",
+           "breakdown": {
+             "item_total": {  /* Required when including the items array */
+               "currency_code": "USD",
+               "value": "51"
+             }
+           }
+         },
+         "items": [
+           {
+             "name": "First Product Name", /* Shows within upper-right dropdown during payment approval */
+             "description": "Optional descriptive text..", /* Item details will also be in the completed paypal.com transaction view */
+             "sku": "first sku",
+             "unit_amount": {
+               "currency_code": "USD",
+               "value": "51"
+             },
+             "quantity": "1"
+           },
+           {
+             "name": "Second Free Product Name", /* Shows within upper-right dropdown during payment approval */
+             "description": "Optional descriptive text..", /* Item details will also be in the completed paypal.com transaction view */
+             "sku": "second sku",
+             "unit_amount": {
+               "currency_code": "USD",
+               "value": "0"
+             },
+             "quantity": "1"
+           },
+         ]
+       }]
+   });
+      },
+
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(orderData) {
+          
+          // Full available details
+          console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+          // Show a success message within this page, e.g.
+          const element = document.getElementById('paypal-button-container');
+          element.innerHTML = '';
+          element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+          // Or go to another URL:  actions.redirect('thank_you.html');
+          
+        });
+      },
+
+      onError: function(err) {
+        console.log(err);
+      }
+    }).render('#paypal-button-container');
+  }
+  initPayPalButton();
+</script>
+</body>
+</html>
