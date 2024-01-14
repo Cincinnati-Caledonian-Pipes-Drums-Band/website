@@ -6,47 +6,47 @@
   <div>
     <form name="vm.tenorForm">
       <div ng-switch="vm.user.comp.tenor.grade">
-        <div ng-switch-when="Beginner">
-          <h4>Beginner Tenor Events (unsanctioned)</h4>
+        <div ng-switch-when="4">
+          <h4>Grade 4 Tenor Event</h4>
           <div>
             <label class="pointer">
-              <input type="checkbox" name="quickMarchTenor" ng-model="vm.user.comp.tenor.events.quickMarchTenor" ng-true-value="'Quick March'" ng-required="!(vm.user.comp.tenor.events.quickMarchTenor)" />
-              Quick March (4-part quick march in 2/4, 4/4, or 6/8)
+              <input type="checkbox" name="marchSetTenor" ng-model="vm.user.comp.tenor.events.marchSetTenor" ng-true-value="'March Set'" ng-required="!(vm.user.comp.tenor.events.marchSetTenor)" />
+              March Set (1 4-part march or 2 2-part marches in 2/4, 3/4, or 4/4 time)
             </label>
           </div>
         </div>
-        <div ng-switch-when="Novice">
-          <h4>Novice Tenor Events</h4>
+        <div ng-switch-when="3">
+          <h4>Grade 3 Tenor Events</h4>
           <div>
             <label class="pointer">
-              <input type="checkbox" name="quickMarchTenor" ng-model="vm.user.comp.tenor.events.quickMarchTenor" ng-true-value="'Quick March'" ng-required="!(vm.user.comp.tenor.events.quickMarchTenor || vm.user.comp.tenor.events.marchSetTenor)" />
-              Quick March (4-part quick march in 2/4, 4/4, or 6/8)
+              <input type="checkbox" name="twoFourTenor" ng-model="vm.user.comp.tenor.events.twoFourTenor" ng-true-value="'2/4 March'" ng-required="!(vm.user.comp.tenor.events.twoFourTenor || vm.user.comp.tenor.events.srTenor)" />
+              2/4 March
             </label>
           </div>
           <div>
             <label class="pointer">
-              <input type="checkbox" name="marchSetTenor" ng-model="vm.user.comp.tenor.events.marchSetTenor" ng-true-value="'March Set'" ng-required="!(vm.user.comp.tenor.events.quickMarchTenor || vm.user.comp.tenor.events.marchSetTenor)" />
-              March Set
+              <input type="checkbox" name="srTenor" ng-model="vm.user.comp.tenor.events.srTenor" ng-true-value="'Strathspey/Reel'" ng-required="!(vm.user.comp.tenor.events.twoFourTenor || vm.user.comp.tenor.events.srTenor)" />
+              Strathspey/Reel
             </label>
           </div>
         </div>
-        <div ng-switch-when="Amateur">
-          <h4>Amateur Tenor Events</h4>
+        <div ng-switch-when="2">
+          <h4>Grade 2 Tenor Events</h4>
           <div>
             <label class="pointer">
-              <input type="checkbox" name="msrTenor" ng-model="vm.user.comp.tenor.events.msrTenor" ng-true-value="'M/S/R'" ng-required="!(vm.user.comp.tenor.events.msrTenor || vm.user.comp.tenor.events.medleyTenor)" />
+              <input type="checkbox" name="msrTenor" ng-model="vm.user.comp.tenor.events.msrTenor" ng-true-value="'M/S/R'" ng-required="!(vm.user.comp.tenor.events.msrTenor || vm.user.comp.tenor.events.hjTenor)" />
               March/Strathspey/Reel
             </label>
           </div>
           <div>
             <label class="pointer">
-              <input type="checkbox" name="medleySetTenor" ng-model="vm.user.comp.tenor.events.medleyTenor" ng-true-value="'Medley'" ng-required="!(vm.user.comp.tenor.events.msrTenor || vm.user.comp.tenor.events.medleyTenor)" />
-              Medley
+              <input type="checkbox" name="hjTenor" ng-model="vm.user.comp.tenor.events.hjTenor" ng-true-value="'Hornpipe/Jig'" ng-required="!(vm.user.comp.tenor.events.msrTenor || vm.user.comp.tenor.events.hjTenor)" />
+              Hornpipe/Jig
             </label>
           </div>
         </div>
         <div ng-switch-when="Open">
-          <h4>Open Tenor Events</h4>
+          <h4>Grade 1 Tenor Events</h4>
           <div>
             <label class="pointer">
               <input type="checkbox" name="msrTenor" ng-model="vm.user.comp.tenor.events.msrTenor" ng-true-value="'M/S/R'" ng-required="!(vm.user.comp.tenor.events.msrTenor || vm.user.comp.tenor.events.hjTenor)" />

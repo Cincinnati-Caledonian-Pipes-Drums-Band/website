@@ -7,7 +7,7 @@
     <form name="vm.bagpipesForm">
       <div ng-switch="vm.user.comp.bagpipes.grade">
         <div ng-switch-when="novice">
-          <h4>Novice Bagpipe Event</h4>
+          <h4>Novice Bagpipe Event (unsanctioned)</h4>
           <div>
             <label class="pointer">
               <input type="checkbox" name="novice" ng-model="vm.user.comp.bagpipes.events.novice" ng-true-value="'March'" required="required" />
@@ -20,7 +20,7 @@
           <div>
             <label class="pointer">
               <input type="checkbox" name="grade5" ng-model="vm.user.comp.bagpipes.events.grade5" ng-true-value="'2-Part March'" ng-required="!(vm.user.comp.bagpipes.events.grade5 || vm.user.comp.bagpipes.events.groundOnly)" />
-              1 2-parted march or the first 2 parts of a longer march in 2/4, 3/4 or 4/4 time once through on the bagpipe (not practice chanter)
+              March (1 2-parted march or the first 2 parts of a longer march in 2/4, 3/4 or 4/4 time once through on the bagpipe)
             </label>
           </div>
           <div>
@@ -107,7 +107,7 @@
           <div>
             <label class="pointer">
               <input type="checkbox" name="hj" ng-model="vm.user.comp.bagpipes.events.hj" ng-true-value="'Hornpipe/Jig'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.twoFour || vm.user.comp.bagpipes.events.sr || vm.user.comp.bagpipes.events.hj)" />
-              Hornpipe/Jig (submit 1)
+              Hornpipe/Jig (submit 1 of each)
             </label>
           </div>
         </div>
@@ -131,8 +131,14 @@
               Hornpipe/Jig (submit 2)
             </label>
           </div>
+          <div>
+            <label class="pointer">
+              <input type="checkbox" name="sixEight" ng-model="vm.user.comp.bagpipes.events.sixEight" ng-true-value="'6/8 March'" ng-required="!(vm.user.comp.bagpipes.events.piob || vm.user.comp.bagpipes.events.msr || vm.user.comp.bagpipes.events.hj || vm.user.comp.bagpipes.events.sixEight)" />
+              6/8 March (submit 2)
+            </label>
+          </div>
         </div>
-        <div ng-switch-when="Open">
+        <!--<div ng-switch-when="Open">
           <h4>Open Bagpipe Events</h4>
           <div>
             <label class="pointer">
@@ -146,7 +152,7 @@
               March/Strathspey/Reel (submit 4)
             </label>
           </div>
-        </div>
+        </div> -->
       </div>
     </form>
   </div>

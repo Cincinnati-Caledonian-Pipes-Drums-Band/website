@@ -154,7 +154,7 @@
         <div ng-class="vm.user.comp.tenor.checked ? 'instrumentWrapper instrumentSelected' : 'instrumentWrapper'">
           <label class="pointer">
               <input type="checkbox" name="tenor" ng-model="vm.user.comp.tenor.checked" ng-required="!(vm.user.comp.bagpipes.checked || vm.user.comp.snare.checked || vm.user.comp.tenor.checked || vm.user.comp.bass.checked)" ng-change="vm.selectInstrument('tenor')" />
-              <span class="instrument">Tenor Drum (NOT EUSPBA-sanctioned)</span>
+              <span class="instrument">Tenor Drum (EUSPBA-sanctioned)</span>
           </label>
         </div>
         <div ng-if="vm.user.comp.tenor.checked">
@@ -163,25 +163,25 @@
               <div>
                 <label class="pointer">
                   <input type="radio" name="tenorGrade" ng-model="vm.user.comp.tenor.grade" value="Beginner" ng-required="!vm.user.comp.tenor.grade" />
-                  Beginner (unsanctioned)
+                  Grade 4
                 </label>
               </div>
               <div>
                 <label class="pointer">
                   <input type="radio" name="tenorGrade" ng-model="vm.user.comp.tenor.grade" value="Novice" ng-required="!vm.user.comp.tenor.grade" />
-                  Novice
+                  Grade 3
                 </label>
               </div>
               <div>
                 <label class="pointer">
                   <input type="radio" name="tenorGrade" ng-model="vm.user.comp.tenor.grade" value="Amateur" ng-required="!vm.user.comp.tenor.grade" />
-                  Amateur
+                  Grade 2
                 </label>
               </div>
               <div>
                 <label class="pointer">
                   <input type="radio" name="tenorGrade" ng-model="vm.user.comp.tenor.grade" value="Open" ng-required="!vm.user.comp.tenor.grade" />
-                  Open/Professional
+                  Grade 1
                 </label>
               </div>
             </fieldset>
@@ -191,7 +191,7 @@
         <div ng-class="vm.user.comp.bass.checked ? 'instrumentWrapper instrumentSelected' : 'instrumentWrapper'">
           <label class="pointer">
               <input type="checkbox" name="bass" ng-model="vm.user.comp.bass.checked" ng-required="!(vm.user.comp.bagpipes.checked || vm.user.comp.snare.checked || vm.user.comp.tenor.checked || vm.user.comp.bass.checked)" ng-change="vm.selectInstrument('bass')" />
-              <span class="instrument">Bass Drum (NOT EUSPBA-sanctioned)</span>
+              <span class="instrument">Bass Drum (EUSPBA-sanctioned)</span>
           </label>
         </div>
         <div ng-if="vm.user.comp.bass.checked">
@@ -200,25 +200,25 @@
               <div>
                 <label class="pointer">
                   <input type="radio" name="bassGrade" ng-model="vm.user.comp.bass.grade" value="Beginner" ng-required="!vm.user.comp.bass.grade" />
-                  Beginner (unsanctioned)
+                  Grade 4
                 </label>
               </div>
               <div>
                 <label class="pointer">
                   <input type="radio" name="bassGrade" ng-model="vm.user.comp.bass.grade" value="Novice" ng-required="!vm.user.comp.bass.grade" />
-                  Novice
+                  Grade 3
                 </label>
               </div>
               <div>
                 <label class="pointer">
                   <input type="radio" name="bassGrade" ng-model="vm.user.comp.bass.grade" value="Amateur" ng-required="!vm.user.comp.bass.grade" />
-                  Amateur
+                  Grade 2
                 </label>
               </div>
               <div>
                 <label class="pointer">
                   <input type="radio" name="bassGrade" ng-model="vm.user.comp.bass.grade" value="Open" ng-required="!vm.user.comp.bass.grade" />
-                  Open/Professional
+                  Grade 1
                 </label>
               </div>
             </fieldset>

@@ -6,47 +6,47 @@
   <div>
     <form name="vm.bassForm">
       <div ng-switch="vm.user.comp.bass.grade">
-        <div ng-switch-when="Beginner">
-          <h4>Beginner Bass Events (unsanctioned)</h4>
+        <div ng-switch-when="4">
+          <h4>Grade 4 Bass Event</h4>
           <div>
             <label class="pointer">
-              <input type="checkbox" name="quickMarchBass" ng-model="vm.user.comp.bass.events.quickMarchBass" ng-true-value="'Quick March'" ng-required="!(vm.user.comp.bass.events.quickMarchBass)" />
-              Quick March (4 parts in 2/4, 4/4, or 6/8 time)
+              <input type="checkbox" name="marchSetBass" ng-model="vm.user.comp.bass.events.marchSetBass" ng-true-value="'March Set'" ng-required="!(vm.user.comp.bass.events.marchSetBass)" />
+              March Set (1 4-part march or 2 2-part marches in 2/4, 3/4, or 4/4 time)
             </label>
           </div>
         </div>
-        <div ng-switch-when="Novice">
-          <h4>Novice Bass Events</h4>
+        <div ng-switch-when="3">
+          <h4>Grade 3 Bass Events</h4>
           <div>
             <label class="pointer">
-              <input type="checkbox" name="quickMarchBass" ng-model="vm.user.comp.bass.events.quickMarchBass" ng-true-value="'Quick March'" ng-required="!(vm.user.comp.bass.events.quickMarchBass || vm.user.comp.bass.events.marchSetBass)" />
-              Quick March (4 parts in 2/4, 4/4, or 6/8 time)
+              <input type="checkbox" name="twoFourBass" ng-model="vm.user.comp.bass.events.twoFourBass" ng-true-value="'2/4 March'" ng-required="!(vm.user.comp.bass.events.twoFourBass || vm.user.comp.bass.events.srBass)" />
+              2/4 March
             </label>
           </div>
           <div>
             <label class="pointer">
-              <input type="checkbox" name="marchSetBass" ng-model="vm.user.comp.bass.events.marchSetBass" ng-true-value="'March Set'" ng-required="!(vm.user.comp.bass.events.quickMarchBass || vm.user.comp.bass.events.marchSetBass)" />
-              March Set
+              <input type="checkbox" name="srBass" ng-model="vm.user.comp.bass.events.srBass" ng-true-value="'Strathspey/Reel'" ng-required="!(vm.user.comp.bass.events.twoFourBass || vm.user.comp.bass.events.srBass)" />
+              Strathspey/Reel
             </label>
           </div>
         </div>
-        <div ng-switch-when="Amateur">
-          <h4>Amateur Bass Events</h4>
+        <div ng-switch-when="2">
+          <h4>Grade 2 Bass Events</h4>
           <div>
             <label class="pointer">
-              <input type="checkbox" name="msrBass" ng-model="vm.user.comp.bass.events.msrBass" ng-true-value="'M/S/R'" ng-required="!(vm.user.comp.bass.events.msrBass || vm.user.comp.bass.events.medleyBass)" />
+              <input type="checkbox" name="msrBass" ng-model="vm.user.comp.bass.events.msrBass" ng-true-value="'M/S/R'" ng-required="!(vm.user.comp.bass.events.msrBass || vm.user.comp.bass.events.hjBass)" />
               March/Strathspey/Reel
             </label>
           </div>
           <div>
             <label class="pointer">
-              <input type="checkbox" name="medleyBass" ng-model="vm.user.comp.bass.events.medleyBass" ng-true-value="'Medley'" ng-required="!(vm.user.comp.bass.events.msrBass || vm.user.comp.bass.events.medleyBass)" />
-              Medley (or march set)
+              <input type="checkbox" name="hjBass" ng-model="vm.user.comp.bass.events.hjBass" ng-true-value="'Hornpipe/Jig'" ng-required="!(vm.user.comp.bass.events.msrBass || vm.user.comp.bass.events.hjBass)" />
+              Hornpipe/Jig
             </label>
           </div>
         </div>
         <div ng-switch-when="Open">
-          <h4>Open Bass Events</h4>
+          <h4>Grade 1 Bass Events</h4>
           <div>
             <label class="pointer">
               <input type="checkbox" name="msrBass" ng-model="vm.user.comp.bass.events.msrBass" ng-true-value="'M/S/R'" ng-required="!(vm.user.comp.bass.events.msrBass || vm.user.comp.bass.events.hjBass)" />
