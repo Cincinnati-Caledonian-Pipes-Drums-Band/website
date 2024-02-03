@@ -109,3 +109,7 @@ ul.rating {
 .rating .filled {
   color: rgba(0,0,255,0.7);
 }
+
+.register{
+  text-align: center;
+}
