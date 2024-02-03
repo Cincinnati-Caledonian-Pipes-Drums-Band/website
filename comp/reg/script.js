@@ -111,7 +111,7 @@
 					acknowledge: vm.acknowledge
 				}
 			};
-			debugger
+
 			// Recursively flatten the reg details
 			var flattened = JSON.stringify(Object.flatten(fullReg));
 			// Remove "registration." from all paths for brevity
@@ -128,7 +128,7 @@
 					continue;
 				}
 				items.push({
-					"name": p, //concatenate field name (what's left after stripping) with value
+					"name": p + ":" + final[p], //concatenate field name (what's left after stripping) with value
 					"description": p + ":" + final[p], //p + add colon final[p] p + ":" + final[p]: 
 					"unit_amount": {
 					   "currency_code": "USD",
