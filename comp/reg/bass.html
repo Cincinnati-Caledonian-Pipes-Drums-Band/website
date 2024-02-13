@@ -7,7 +7,7 @@
     <form name="vm.bassForm">
       <div ng-switch="vm.user.comp.bass.grade">
         <div ng-switch-when="4">
-          <h4>Grade 4 Bass Event</h4>
+          <h4>Grade 4 Bass Event (unsanctioned)</h4>
           <div>
             <label class="pointer">
               <input type="checkbox" name="marchSetBass" ng-model="vm.user.comp.bass.events.marchSetBass" ng-true-value="'March Set'" ng-required="!(vm.user.comp.bass.events.marchSetBass)" />
@@ -16,7 +16,7 @@
           </div>
         </div>
         <div ng-switch-when="3">
-          <h4>Grade 3 Bass Events</h4>
+          <h4>Grade 3 Bass Events (unsanctioned)</h4>
           <div>
             <label class="pointer">
               <input type="checkbox" name="twoFourBass" ng-model="vm.user.comp.bass.events.twoFourBass" ng-true-value="'2/4 March'" ng-required="!(vm.user.comp.bass.events.twoFourBass || vm.user.comp.bass.events.srBass)" />
@@ -31,7 +31,7 @@
           </div>
         </div>
         <div ng-switch-when="2">
-          <h4>Grade 2 Bass Events</h4>
+          <h4>Grade 2 Bass Events (unsanctioned)</h4>
           <div>
             <label class="pointer">
               <input type="checkbox" name="msrBass" ng-model="vm.user.comp.bass.events.msrBass" ng-true-value="'M/S/R'" ng-required="!(vm.user.comp.bass.events.msrBass || vm.user.comp.bass.events.hjBass)" />
@@ -46,7 +46,7 @@
           </div>
         </div>
         <div ng-switch-when="Open">
-          <h4>Grade 1 Bass Events</h4>
+          <h4>Grade 1 Bass Events (unsanctioned)</h4>
           <div>
             <label class="pointer">
               <input type="checkbox" name="msrBass" ng-model="vm.user.comp.bass.events.msrBass" ng-true-value="'M/S/R'" ng-required="!(vm.user.comp.bass.events.msrBass || vm.user.comp.bass.events.hjBass)" />
